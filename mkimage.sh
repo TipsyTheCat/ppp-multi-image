@@ -39,7 +39,7 @@ mkdir -p mounts/{src_root,src_boot,dst}
     echo "table-length: $(( $NUM_DISTROS + 2 ))"
     echo "attrs=RequiredPartition, type=D7B1F817-AA75-2F4F-830D-84818A145370, start=64, size=32704, name=\"uboot_raw\""
     for distro in $BASE/distros/*; do
-        source $distro/config
+        . $distro/config
         echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=$PARTSIZE, name=\"$PARTLABEL\""
     done
     echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"extra\""
@@ -49,7 +49,7 @@ dd if=$BASE/downloads/ppp/foss/u-boot-rockchip.bin of=$DEVICE bs=512 seek=64
 sync
 
 for distro in $BASE/distros/*; do
-    source $distro/config
+    . $distro/config
     SRC_IMAGE_ARCHIVE=$(basename $URL)
     SRC_IMG=${SRC_IMAGE_ARCHIVE%.*}
 
