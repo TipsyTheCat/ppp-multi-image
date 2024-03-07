@@ -1,0 +1,5 @@
+URL=https://github.com/dreemurrs-embedded/Pine64-Arch/releases/download/20230925/archlinux-pinephone-pro-phosh-20230925.img.xz
+PARTLABEL=ARCH
+BOOT_PT=1
+ROOT_PT=2
+EXTRACT=unxz

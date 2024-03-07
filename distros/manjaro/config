@@ -1,0 +1,5 @@
+URL=https://github.com/manjaro-pinephone/phosh/releases/download/beta37/Manjaro-ARM-phosh-pinephonepro-beta37.img.xz
+PARTLABEL=MANJARO
+BOOT_PT=1
+ROOT_PT=2
+EXTRACT=unxz
