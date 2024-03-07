@@ -24,6 +24,8 @@ fi
 BASE=$(pwd)
 NUM_DISTROS=$(echo $BASE/distros/* | wc --words)
 
+trap "set +e; umount $BASE/mounts/*; rm -rf $BASE/mounts; losetup -D;" ERR
+
 # Hack: Make partition naming consistent by creating a loop device pointing to
 #       the device we will be writing to.
 DEVICE=$(losetup --partscan --find --show $DEVICE)
