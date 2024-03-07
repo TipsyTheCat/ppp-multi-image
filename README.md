@@ -2,7 +2,6 @@
 
 Ensure the following packages are installed:
 
-* `parted`
 * `wget`
 * `rsync`
 
