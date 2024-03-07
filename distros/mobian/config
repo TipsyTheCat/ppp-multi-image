@@ -1,5 +1,5 @@
 URL=https://images.mobian.org/pinephonepro/weekly/mobian-pinephonepro-phosh-20240121.img.xz
-PARTLABEL=MOBIAN
+PARTLABEL=ppp-multi-image-mobian
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz

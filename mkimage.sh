@@ -24,6 +24,13 @@ fi
 BASE=$(pwd)
 NUM_DISTROS=$(echo $BASE/distros/* | wc --words)
 
+# Hack: Make partition naming consistent by creating a loop device pointing to
+#       the device we will be writing to.
+DEVICE=$(losetup --partscan --find --show $DEVICE)
+
+rm -rf mounts
+mkdir -p mounts/{src_root,src_boot,dst}
+
 (
     echo "label: gpt"
     echo "first-lba: 64"
@@ -35,3 +42,29 @@ NUM_DISTROS=$(echo $BASE/distros/* | wc --words)
     done
     echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"extra\""
 ) | sfdisk $DEVICE --wipe always
+
+dd if=$BASE/downloads/ppp/foss/u-boot-rockchip.bin of=$DEVICE bs=512 seek=64
+sync
+
+for distro in $BASE/distros/*; do
+    source $distro/config
+    SRC_IMAGE_ARCHIVE=$(basename $URL)
+    SRC_IMG=${SRC_IMAGE_ARCHIVE%.*}
+
+    SRC_LOOP=$(losetup --partscan --find --show $BASE/downloads/$SRC_IMG)
+    mount ${SRC_LOOP}p${BOOT_PT} $BASE/mounts/src_boot
+    mount ${SRC_LOOP}p${ROOT_PT} $BASE/mounts/src_root
+
+    mkfs.ext4 /dev/disk/by-partlabel/$PARTLABEL
+    mount /dev/disk/by-partlabel/$PARTLABEL $BASE/mounts/dst
+    rsync -a $BASE/mounts/src_root/* $BASE/mounts/dst/
+    rsync -a $BASE/mounts/src_boot/* $BASE/mounts/dst/
+
+    umount $BASE/mounts/dst
+    umount $BASE/mounts/src_boot
+    umount $BASE/mounts/src_root
+    losetup --detach $SRC_LOOP
+done
+
+rm -rf mounts
+losetup --detach $DEVICE

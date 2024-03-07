@@ -4,6 +4,7 @@ Ensure the following packages are installed:
 
 * `parted`
 * `wget`
+* `rsync`
 
 Execute the following commands from the root of the project directory:
 
