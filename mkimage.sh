@@ -5,6 +5,9 @@ if [ "$(id -u)" != "0" ]; then
 	exec sudo sh "$0" "$@"
 fi
 
+# Hack to simulate ERR traps on non-Bash shells
+rm -f .all_ok
+
 PARTSIZE=10G
 DEVICE=$1
 
@@ -24,14 +27,14 @@ fi
 BASE=$(pwd)
 NUM_DISTROS=$(echo $BASE/distros/* | wc --words)
 
-trap "set +e; umount $BASE/mounts/*; rm -rf $BASE/mounts; losetup -D;" ERR
+trap "if [ ! -e .all_ok ]; then set +e; umount $BASE/mounts/*; rm -rf $BASE/mounts; losetup -D; fi; rm -f .all_ok;" EXIT
 
 # Hack: Make partition naming consistent by creating a loop device pointing to
 #       the device we will be writing to.
 DEVICE=$(losetup --partscan --find --show $DEVICE)
 
 rm -rf mounts
-mkdir -p mounts/{src_root,src_boot,dst}
+mkdir -p mounts/src_root mounts/src_boot mounts/dst
 
 (
     echo "label: gpt"
@@ -71,3 +74,4 @@ done
 
 rm -rf mounts
 losetup --detach $DEVICE
+touch .all_ok
