@@ -1,4 +1,4 @@
-# PinePhone Pro Multi-Distribution SD card image
+# PinePhone Pro multi-distribution SD card image
 
 Ensure the following packages are installed:
 
