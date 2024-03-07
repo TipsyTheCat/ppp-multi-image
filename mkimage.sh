@@ -55,7 +55,7 @@ for distro in $BASE/distros/*; do
     mount ${SRC_LOOP}p${BOOT_PT} $BASE/mounts/src_boot
     mount ${SRC_LOOP}p${ROOT_PT} $BASE/mounts/src_root
 
-    mkfs.ext4 /dev/disk/by-partlabel/$PARTLABEL
+    mkfs.ext4 -F /dev/disk/by-partlabel/$PARTLABEL
     mount /dev/disk/by-partlabel/$PARTLABEL $BASE/mounts/dst
     rsync -a $BASE/mounts/src_root/* $BASE/mounts/dst/
     rsync -a $BASE/mounts/src_boot/* $BASE/mounts/dst/
