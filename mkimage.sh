@@ -62,8 +62,8 @@ for distro in $BASE/distros/*; do
 
     mkfs.ext4 -F /dev/disk/by-partlabel/$PARTLABEL
     mount /dev/disk/by-partlabel/$PARTLABEL $BASE/mounts/dst
-    rsync -a $BASE/mounts/src_root/* $BASE/mounts/dst/
-    rsync -a $BASE/mounts/src_boot/* $BASE/mounts/dst/boot/
+    rsync --archive --numeric-ids $BASE/mounts/src_root/* $BASE/mounts/dst/
+    rsync --archive --numeric-ids $BASE/mounts/src_boot/* $BASE/mounts/dst/boot/
     rm -f $BASE/mounts/dst/boot/*.scr
     cp -r $distro/overrides/* $BASE/mounts/dst/
 
