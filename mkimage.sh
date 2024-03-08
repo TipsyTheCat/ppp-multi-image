@@ -58,11 +58,13 @@ mkdir -p mounts/src_root mounts/src_boot mounts/dst
         . $distro/config
         echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=$PARTSIZE, name=\"$PARTLABEL\""
     done
-    echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"extra\""
+    echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"ppp-multi-image-extra\""
 ) | sfdisk $DEVICE --wipe always
 
 dd if=$BASE/downloads/ppp/foss/u-boot-rockchip.bin of=$DEVICE bs=512 seek=64
 sync
+
+mkfs.ext4 -F /dev/disk/by-partlabel/ppp-multi-image-extra
 
 for distro in $BASE/distros/*; do
     unset FNAME
