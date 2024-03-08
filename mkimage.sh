@@ -67,23 +67,44 @@ sync
 for distro in $BASE/distros/*; do
     . $distro/config
     SRC_IMAGE_ARCHIVE=$(basename $URL)
-    SRC_IMG=${SRC_IMAGE_ARCHIVE%.*}
-
-    SRC_LOOP=$(losetup --partscan --find --show $BASE/downloads/$SRC_IMG)
-    mount ${SRC_LOOP}p${BOOT_PT} $BASE/mounts/src_boot
-    mount ${SRC_LOOP}p${ROOT_PT} $BASE/mounts/src_root
 
     mkfs.ext4 -F /dev/disk/by-partlabel/$PARTLABEL
     mount /dev/disk/by-partlabel/$PARTLABEL $BASE/mounts/dst
-    rsync --archive --numeric-ids $BASE/mounts/src_root/* $BASE/mounts/dst/
-    rsync --archive --numeric-ids $BASE/mounts/src_boot/* $BASE/mounts/dst/boot/
+
+    cleanup() {}
+    case $METHOD in
+        img)
+            SRC_IMG=${SRC_IMAGE_ARCHIVE%.*}
+            SRC_LOOP=$(losetup --partscan --find --show $BASE/downloads/$SRC_IMG)
+            mount ${SRC_LOOP}p${BOOT_PT} $BASE/mounts/src_boot
+            mount ${SRC_LOOP}p${ROOT_PT} $BASE/mounts/src_root
+
+            rsync --archive --numeric-ids $BASE/mounts/src_root/* $BASE/mounts/dst/
+            rsync --archive --numeric-ids $BASE/mounts/src_boot/* $BASE/mounts/dst/boot/
+
+            cleanup() {
+                umount $BASE/mounts/src_boot
+                umount $BASE/mounts/src_root
+                losetup --detach $SRC_LOOP
+            }
+            ;;
+
+        rootfs)
+            $TAR_CMD $BASE/downloads/$SRC_IMAGE_ARCHIVE --numeric-owner \
+                     --directory=$BASE/mounts/dst
+            ;;
+
+        *)
+            echo "Error: unknown method: $METHOD"
+            exit 1
+            ;;
+    esac
+
     rm -f $BASE/mounts/dst/boot/*.scr
     cp -r $distro/overrides/* $BASE/mounts/dst/
 
     umount $BASE/mounts/dst
-    umount $BASE/mounts/src_boot
-    umount $BASE/mounts/src_root
-    losetup --detach $SRC_LOOP
+    cleanup
 done
 
 rm -rf mounts

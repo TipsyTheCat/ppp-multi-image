@@ -1,5 +1,7 @@
 URL=https://images.postmarketos.org/bpo/v23.12/pine64-pinephonepro/phosh/20240221-0448/20240221-0448-postmarketOS-v23.12-phosh-22.3-pine64-pinephonepro.img.xz
 PARTLABEL=ppp-multi-image-pmos
+
+METHOD=img
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz
