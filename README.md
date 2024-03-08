@@ -18,7 +18,7 @@ cd /path/to/ppp-multi-image
 ```
 
 Run the following command to download the images/tarballs for each distro (do
-*not* run as root):
+**not** run as root):
 
 ```shell
 ./download.sh
@@ -60,14 +60,14 @@ Then we will obtain the following partition structure:
 The `mkimage.sh` script will automatically install Megi's custom U-Boot image
 ([source](https://xff.cz/git/u-boot/tree/?h=ppp-2023.07),
 [config+build](https://xff.cz/kernels/bootloaders-2024.04/ppp.tar.gz)) to
-the SD card. This image *must* be executed by the PinePhone Pro during boot in
+the SD card. This image **must** be executed by the PinePhone Pro during boot in
 order to display the graphical distribution selector.
 
 The easiest way to ensure this happens is to install
 [rk2aw](https://xnux.eu/rk2aw/) to the phone's SPI flash; then it will boot the
 correct U-Boot image regardless of what is installed on the eMMC.
 
-Alternatively, you can hold the *RE* button while you power up your phone; this
+Alternatively, you can hold the **RE** button while you power up your phone; this
 will temporarily disable the eMMC and SPI flash in order force a boot from
 the U-Boot image on the SD card.
 
@@ -78,8 +78,8 @@ the same method (as described above) to install the multi-distribution image
 to the eMMC.
 
 You will still need to make sure that the correct bootloader is being executed.
-You can either do this by installing rk2aw to the SPI flash and *not* inserting
-a bootable SD card, or by zeroing out your SPI flash.
+You can either do this by installing rk2aw to the SPI flash and **not**
+inserting a bootable SD card, or by zeroing out your SPI flash.
 
 ## Building a release image
 
@@ -93,7 +93,7 @@ fallocate -l 64000000000 sdcard.img # e.g. for a 64GB SD card
 ```
 
 It should be noted that this approach will take up 64GB of space on your hard
-drive *and* slow down the final copy to the SD card:
+drive _and_ slow down the final copy to the SD card:
 
 ```shell
 sudo dd if=sdcard.img of=/dev/[DEVICE] bs=1M conv=fsync
