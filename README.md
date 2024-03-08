@@ -32,7 +32,7 @@ Finally, run the following command to generate the image:
 
 Replace `/dev/[DEVICE]` with the device file of your SD card. Each distribution
 will be allocated its own partition; use the `-p` argument to specify the size
-of these partitions. If no `-p` argument is provided a default size of 10GB
+of these partitions. If no `-p` argument is provided a default size of 10 GiB
 per partition will be used.
 
 The `-p` argument will be passed straight to `sfdisk`, so refer to `man sfdisk`

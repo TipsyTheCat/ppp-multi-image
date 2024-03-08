@@ -8,7 +8,7 @@ fi
 # Hack to simulate ERR traps on non-Bash shells
 rm -f .all_ok
 
-PARTSIZE=10G
+PARTSIZE=10GiB
 DEVICE=$1
 
 usage() {
