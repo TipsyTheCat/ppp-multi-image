@@ -1,0 +1,7 @@
+URL=https://gitlab.com/sailfishos-porters-ci/dont_be_evil-ci/-/jobs/artifacts/master/download?job=pinephonepro-rootfs
+FNAME=sailfish.tar.bz2
+PARTLABEL=ppp-multi-image-sailfish
+
+METHOD=rootfs
+
+TAR_CMD="tar -xjf"

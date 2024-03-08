@@ -1,0 +1,8 @@
+PARTLABEL=ppp-multi-image-sailfish   /          ext4   rw,noatime                0      1
+devtmpfs   /dev      devtmpfs  nosuid               0 0
+devpts     /dev/pts  devpts  gid=5,mode=620         0 0
+tmpfs      /dev/shm  tmpfs   noexec,nosuid,nodev    0 0
+proc       /proc     proc    defaults         0 0
+sysfs      /sys      sysfs   defaults         0 0
+tmpfs      /tmp      tmpfs   nosuid,nodev           0 0
+
