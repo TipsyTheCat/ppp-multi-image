@@ -78,7 +78,7 @@ the same method (as described above) to install the multi-distribution image
 to the eMMC.
 
 You will still need to make sure that the correct bootloader is being executed.
-You can eitherdo this by installing rk2aw to the SPI flash and *not* inserting
+You can either do this by installing rk2aw to the SPI flash and *not* inserting
 a bootable SD card, or by zeroing out your SPI flash.
 
 ## Building a release image
