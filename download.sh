@@ -34,7 +34,7 @@ for distro in $BASE/distros/*; do
             if [ ! -e $FNAME ]; then
 
                 # Sailfish puts a tar inside a zip, because of course it does.
-                if [ $(basename $distro) == "sailfish" ]; then
+                if [ $(basename $distro) = "sailfish" ]; then
                     rm -f artifacts.zip
                     wget $URL -O artifacts.zip
                     rm -rf pinephonepro
