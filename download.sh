@@ -14,8 +14,12 @@ fi
 rm -f ppp.tar.gz
 
 for distro in $BASE/distros/*; do
+    unset FNAME
+
     . $distro/config
-    FNAME=$(basename $URL)
+    if [ -z $FNAME ]; then
+        FNAME=$(basename $URL)
+    fi
 
     case $METHOD in
         img)
@@ -28,6 +32,21 @@ for distro in $BASE/distros/*; do
 
         rootfs)
             if [ ! -e $FNAME ]; then
+
+                # Sailfish puts a tar inside a zip, because of course it does.
+                if [ $(basename $distro) == "sailfish" ]; then
+                    rm -f artifacts.zip
+                    wget $URL -O artifacts.zip
+                    rm -rf pinephonepro
+                    unzip artifacts.zip
+                    rm -f artifacts.zip
+
+                    mv $(find pinephonepro -name '*.tar.bz2' | tail -n 1) sailfish.tar.bz2
+                    rm -rf pinephonepro
+
+                    continue
+                fi
+
                 wget $URL
             fi
             ;;

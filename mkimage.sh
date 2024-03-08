@@ -65,13 +65,21 @@ dd if=$BASE/downloads/ppp/foss/u-boot-rockchip.bin of=$DEVICE bs=512 seek=64
 sync
 
 for distro in $BASE/distros/*; do
+    unset FNAME
+
     . $distro/config
-    SRC_IMAGE_ARCHIVE=$(basename $URL)
+    if [ -z $FNAME ]; then
+        SRC_IMAGE_ARCHIVE=$(basename $URL)
+    else
+        SRC_IMAGE_ARCHIVE="$FNAME"
+    fi
 
     mkfs.ext4 -F /dev/disk/by-partlabel/$PARTLABEL
     mount /dev/disk/by-partlabel/$PARTLABEL $BASE/mounts/dst
 
-    cleanup() {}
+    cleanup() {
+        true
+    }
     case $METHOD in
         img)
             SRC_IMG=${SRC_IMAGE_ARCHIVE%.*}
@@ -100,7 +108,7 @@ for distro in $BASE/distros/*; do
             ;;
     esac
 
-    rm -f $BASE/mounts/dst/boot/*.scr
+    rm -f $BASE/mounts/dst/boot/*.scr $BASE/mounts/dst/boot/*.cmd
     cp -r $distro/overrides/* $BASE/mounts/dst/
 
     umount $BASE/mounts/dst
