@@ -11,14 +11,17 @@ rm -f .all_ok
 PARTSIZE=10G
 DEVICE=$1
 
+usage() {
+    echo "Usage: $0 [-p <partition size>] DEVICE"
+    exit 1
+}
+
 if [ $# -ne 1 ]; then
     if [ $# -ne 3 ]; then
-        echo "Usage: $0 [-p <partition size>] DEVICE"
-        exit 1
+        usage
     fi
     if [ $1 != "-p" ]; then
-        echo "Usage: $0 [-p <partition size>] DEVICE"
-        exit 1
+        usage
     fi
     PARTSIZE=$2
     DEVICE=$3
@@ -27,7 +30,17 @@ fi
 BASE=$(pwd)
 NUM_DISTROS=$(echo $BASE/distros/* | wc --words)
 
-trap "if [ ! -e .all_ok ]; then set +e; umount $BASE/mounts/*; rm -rf $BASE/mounts; losetup -D; fi; rm -f .all_ok;" EXIT
+exittrap() {
+    if [ ! -e .all_ok ]; then
+        set +e
+        umount $BASE/mounts/*
+        rm -rf $BASE/mounts
+        losetup -D
+    fi
+    rm -f .all_ok
+}
+
+trap exittrap EXIT
 
 # Hack: Make partition naming consistent by creating a loop device pointing to
 #       the device we will be writing to.
