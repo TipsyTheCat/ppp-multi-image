@@ -96,7 +96,7 @@ It should be noted that this approach will take up 64GB of space on your hard
 drive *and* slow down the final copy to the SD card:
 
 ```shell
-dd if=sdcard.img of=/dev/[DEVICE] bs=1M conv=fsync
+sudo dd if=sdcard.img of=/dev/[DEVICE] bs=1M conv=fsync
 ```
 
 ## See also
