@@ -81,6 +81,21 @@ You will still need to make sure that the correct bootloader is being executed.
 You can either do this by installing rk2aw to the SPI flash and **not**
 inserting a bootable SD card, or by zeroing out your SPI flash.
 
+## Reinstall a single distro
+
+This functionality exists mainly for development purposes, e.g. adding support
+for new distributions. Make sure that:
+
+1. You are still in the project's root directory, and
+2. `/dev/[DEVICE]` has already been imaged via `mkimage.sh`.
+
+Run the following command, replacing `<distro>` with the name of one of the
+subdirectories in `distros/`.
+
+```shell
+util/installdistro.sh distros/<distro> /dev/[DEVICE]
+```
+
 ## Building a release image
 
 If you want to create an SD card image that can be written directly to an SD
