@@ -24,6 +24,10 @@ Run the following command to download the images/tarballs for each distro (do
 ./download.sh
 ```
 
+Any time you pull new updates from the repository, or make manual changes to
+the distro parameters (i.e. in `distros/*/config`), you will need to re-run
+`download.sh` to download the updated files.
+
 Finally, run the following command to generate the image:
 
 ```shell
