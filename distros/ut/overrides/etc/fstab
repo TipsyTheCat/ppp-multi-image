@@ -1,0 +1,3 @@
+PARTLABEL=ppp-multi-image-ut	/	ext4	defaults	0	1
+PARTLABEL=ppp-multi-image-ut	/boot	ext4	defaults	0	2
+PARTLABEL=ppp-multi-image-ut-data	/userdata	ext4	defaults	0	2

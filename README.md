@@ -39,25 +39,29 @@ will be allocated its own partition; use the `-p` argument to specify the size
 of these partitions. If no `-p` argument is provided a default size of 10 GiB
 per partition will be used.
 
+>Note: free space at the end of the device will be formatted as the Ubuntu
+Touch user data partition.
+
 The `-p` argument will be passed straight to `sfdisk`, so refer to `man sfdisk`
 regarding how to specify sizes accurately (e.g. GiB vs GB).
 
-Currently there are five distributions available to install, so if we have a
-64 GB (~= 60 GiB) SD card on `/dev/mmcblk0` and we run the following command:
+Currently there are six distributions available to install, so if we have a
+64 GB (~= 59.6 GiB) SD card on `/dev/mmcblk0` and we run the following command:
 
 ```shell
-./mkimage.sh -p 11GiB /dev/mmcblk0
+./mkimage.sh -p 9GiB /dev/mmcblk0
 ```
 
 Then we will obtain the following partition structure:
 
 * `/dev/mmcblk0p1`: Bootloader (raw partition, 16 MiB)
-* `/dev/mmcblk0p2`: Distro 1 (11 GiB)
-* `/dev/mmcblk0p3`: Distro 2 (11 GiB)
-* `/dev/mmcblk0p4`: Distro 3 (11 GiB)
-* `/dev/mmcblk0p5`: Distro 4 (11 GiB)
-* `/dev/mmcblk0p6`: Distro 5 (11 GiB)
-* `/dev/mmcblk0p7`: Shared partition for general data storage (4.6 GiB)
+* `/dev/mmcblk0p2`: Distro 1 (9 GiB)
+* `/dev/mmcblk0p3`: Distro 2 (9 GiB)
+* `/dev/mmcblk0p4`: Distro 3 (9 GiB)
+* `/dev/mmcblk0p5`: Distro 4 (9 GiB)
+* `/dev/mmcblk0p6`: Distro 5 (9 GiB)
+* `/dev/mmcblk0p7`: Distro 6 (9 GiB)
+* `/dev/mmcblk0p8`: Ubuntu Touch user data (5.6 GiB)
 
 ## Bootloaders
 
@@ -108,7 +112,7 @@ card (without having to re-run this script), you can do so as follows:
 ```shell
 fallocate -l 64000000000 sdcard.img # e.g. for a 64GB SD card
 ./download.sh                       # if you haven't downloaded the images already
-./mkimage.sh -p 11GiB sdcard.img
+./mkimage.sh -p 9GiB sdcard.img
 ```
 
 It should be noted that this approach will take up 64GB of space on your hard

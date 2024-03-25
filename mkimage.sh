@@ -57,13 +57,13 @@ sleep 1
         . $distro/config
         echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=$PARTSIZE, name=\"$PARTLABEL\""
     done
-    echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"ppp-multi-image-extra\""
+    echo "attrs=\"RequiredPartition,LegacyBIOSBootable\", size=+, name=\"ppp-multi-image-ut-data\""
 ) | sfdisk $DEVICE --wipe always
 
 dd if=$BASE/downloads/ppp/foss/u-boot-rockchip.bin of=$DEVICE bs=512 seek=64
 sync
 
-mkfs.ext4 -F /dev/disk/by-partlabel/ppp-multi-image-extra
+mkfs.ext4 -F /dev/disk/by-partlabel/ppp-multi-image-ut-data
 
 for distro in $BASE/distros/*; do
     sh $BASE/util/installdistro.sh $distro

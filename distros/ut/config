@@ -1,0 +1,7 @@
+URL=https://ci.ubports.com/job/focal-hybris-rootfs-arm64/job/master/lastSuccessfulBuild/artifact/ubuntu-touch-pinephone-pro-img-arm64.raw.xz
+PARTLABEL=ppp-multi-image-ut
+
+METHOD=img
+BOOT_PT=2
+ROOT_PT=3
+EXTRACT=unxz
