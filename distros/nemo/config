@@ -1,0 +1,7 @@
+URL=https://img.nemomobile.net/2025.05/Manjaro-ARM-nemomobile-pinephonepro-24.01.img.xz
+PARTLABEL=ppp-multi-image-nemo
+
+METHOD=img
+BOOT_PT=1
+ROOT_PT=2
+EXTRACT=unxz
