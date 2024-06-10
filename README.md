@@ -17,6 +17,8 @@ Change directory to the project root:
 cd /path/to/ppp-multi-image
 ```
 
+Remove any unwanted distro configs from `distros/`
+
 Run the following command to download the images/tarballs for each distro (do
 **not** run as root):
 
