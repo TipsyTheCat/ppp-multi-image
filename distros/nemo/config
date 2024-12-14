@@ -1,4 +1,4 @@
-URL=https://img.nemomobile.net/2025.05/Manjaro-ARM-nemomobile-pinephonepro-24.01.img.xz
+URL=https://img.nemomobile.net/2024.10/Manjaro-ARM-nemomobile-pinephonepro-24.10.img.xz
 PARTLABEL=ppp-multi-image-nemo
 
 METHOD=img
