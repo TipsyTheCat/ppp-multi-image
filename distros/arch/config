@@ -1,7 +1,9 @@
 URL=https://github.com/dreemurrs-embedded/Pine64-Arch/releases/download/20241223/archlinux-pinephone-pro-phosh-20241223.img.xz
+URL_HASH=https://github.com/dreemurrs-embedded/Pine64-Arch/releases/download/20241223/release-20241223.md5
 PARTLABEL=ppp-multi-image-arch
 
 METHOD=img
+HASH_TYPE="md5sum -c"
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz

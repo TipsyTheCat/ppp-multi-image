@@ -15,15 +15,19 @@ rm -f ppp.tar.gz
 
 for distro in $BASE/distros/*; do
     unset FNAME
+    unset HNAME
 
     . $distro/config
     if [ -z $FNAME ]; then
         FNAME=$(basename $URL)
     fi
+    if [ -z $HNAME ]; then
+        HNAME=$(basename $URL_HASH)
+    fi
 
     case $METHOD in
         img)
-            if [ ! -e ${FNAME%.*} ]; then
+            if [ ! -e ${FNAME%.*} ]; then # TODO: figure out what this does; implement hash check
                 rm -f $FNAME
                 wget $URL
                 $EXTRACT $FNAME

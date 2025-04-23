@@ -3,5 +3,6 @@ FNAME=sailfish.tar.bz2
 PARTLABEL=ppp-multi-image-sailfish
 
 METHOD=rootfs
+HASH_TYPE=none
 
 TAR_CMD="tar -xjf"

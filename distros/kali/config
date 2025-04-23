@@ -1,7 +1,9 @@
-URL=https://github.com/Shubhamvis98/kali-pinephone/releases/download/20241221/kali_phosh_pinephonepro_20241221.img.xz
+URL=https://github.com/Shubhamvis98/kali-pinephone/releases/download/PP-20250315/kali_phosh_pinephonepro_20250315.img.xz
+URL_HASH=https://github.com/Shubhamvis98/kali-pinephone/releases/download/PP-20250315/sha1sum
 PARTLABEL=ppp-multi-image-kali
 
 METHOD=img
+HASH_TYPE=sha1sum
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz

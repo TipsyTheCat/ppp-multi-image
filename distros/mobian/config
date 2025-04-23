@@ -1,7 +1,9 @@
-URL=https://images.mobian.org/pinephonepro/weekly/mobian-rockchip-phosh-20241222.img.xz
+URL=https://images.mobian.org/pinephonepro/weekly/mobian-rockchip-phosh-20250420.img.xz
+URL_HASH=https://images.mobian.org/pinephonepro/weekly/mobian-rockchip-phosh-20250420.sha256sums
 PARTLABEL=ppp-multi-image-mobian
 
 METHOD=img
+HASH_TYPE=sha256sum
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz

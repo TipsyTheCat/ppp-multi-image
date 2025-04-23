@@ -1,7 +1,9 @@
 URL=https://github.com/manjaro-pinephone/phosh/releases/download/beta37/Manjaro-ARM-phosh-pinephonepro-beta37.img.xz
+URL_HASH="$URL.sha256"
 PARTLABEL=ppp-multi-image-manjaro
 
 METHOD=img
+HASH_TYPE=sha256sum
 BOOT_PT=1
 ROOT_PT=2
 EXTRACT=unxz

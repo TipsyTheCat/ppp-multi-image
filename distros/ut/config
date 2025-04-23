@@ -2,6 +2,7 @@ URL=https://ci.ubports.com/job/focal-hybris-rootfs-arm64/job/master/lastSuccessf
 PARTLABEL=ppp-multi-image-ut
 
 METHOD=img
+HASH_TYPE=none
 BOOT_PT=2
 ROOT_PT=3
 EXTRACT=unxz
