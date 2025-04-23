@@ -1,4 +1,4 @@
-URL=https://images.postmarketos.org/bpo/v24.12/pine64-pinephonepro/phosh/20250101-2213/20250101-2213-postmarketOS-v24.12-phosh-22.5-pine64-pinephonepro.img.xz
+URL=https://images.postmarketos.org/bpo/v24.12/pine64-pinephonepro/phosh/20250423-0831/20250423-0831-postmarketOS-v24.12-phosh-22.5-pine64-pinephonepro.img.xz
 PARTLABEL=ppp-multi-image-pmos
 
 METHOD=img

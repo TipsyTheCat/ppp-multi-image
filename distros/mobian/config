@@ -1,4 +1,4 @@
-URL=https://images.mobian.org/pinephonepro/weekly/mobian-rockchip-phosh-20241222.img.xz
+URL=https://images.mobian.org/pinephonepro/weekly/mobian-rockchip-phosh-20250420.img.xz
 PARTLABEL=ppp-multi-image-mobian
 
 METHOD=img
